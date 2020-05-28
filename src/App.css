@@ -1,0 +1,13 @@
+@import '~antd/dist/antd.css';
+
+.sector-svg{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.top{
+  display: flex;
+  justify-content: space-between;
+}
