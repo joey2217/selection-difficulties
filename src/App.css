@@ -1,13 +1,45 @@
 @import '~antd/dist/antd.css';
 
+.app{
+  background: #f0f2f5;
+  min-height: 100vh;
+  padding-top: 20vh;
+}
+
 .sector-svg{
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px 0;
+}
+.sector-svg .svg{
+  height: 200px;
+  width: 200px;
 }
 
+.sector-svg .pointer{
+  position: absolute;
+  top: 110px;
+  width: 20px;
+  height: 20px;
+  background: #747d8c;
+  border-radius: 50%;
+}
+.sector-svg .pointer .svg-pointer{
+  transform: translate(5px, -48px);
+}
 .top{
   display: flex;
   justify-content: space-between;
+}
+
+.app .data-list .data-item{
+  height: 32px;
+  line-height: 32px;
+  width: 100%;
+}
+
+.data-list{
+  display: flex;
+  flex-wrap: nowrap;
 }

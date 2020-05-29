@@ -8,10 +8,10 @@ const svgWrapper = (content: string, width: number) => (
   </svg>`
 )
 
-const pathWrapper = (path: string, fill: string, x: number, y: number,rotate:number) => (
+const pathWrapper = (path: string, fill: string, x: number, y: number, rotate: number, text: String = 'XXX') => (
   `<path d="${path}" fill="${fill}" >
     </path>
-    <text x="${x}" y="${y}" font-size="20" text-anchor="middle" fill="#000" transform="rotate(${rotate})">SVG</text>
+    <text x="${x}" y="${y}" font-size="20" text-anchor="middle" fill="#000" transform="rotate(${rotate})">${text}</text>
   `
 )
 
@@ -26,10 +26,11 @@ export function round(number: number, precision: number) {
  * @param textList  扇形文字
  * @param r  扇形半径
  */
-export function sectorSvg(num: number = 4, textList?: Array<string>, r: number = 100) {
+export function sectorSvg(textList: Array<string>, r: number = 100) {
   const colorNum = colorList.length;
-  if (num <= 0) {
-    num = 1;
+  let num: number = textList.length;
+  if (num <= 2) {
+    num = 2;
   }
 
   const radian = 2 * Math.PI / num;
@@ -50,8 +51,8 @@ export function sectorSvg(num: number = 4, textList?: Array<string>, r: number =
     const fill = colorList[i % colorNum]
     const textX = r + r * round(Math.sin(radian * (i + 0.5)), 2) / 2;
     const textY = r - r * round(Math.cos(radian * (i + 0.5)), 2) / 2;
-    const rotate =0
-    content += pathWrapper(path, fill, textX, textY,rotate);
+    const rotate = 0
+    content += pathWrapper(path, fill, textX, textY, rotate, textList[i]);
   }
 
   return svgWrapper(content, 2 * r);

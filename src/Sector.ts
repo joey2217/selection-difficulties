@@ -7,9 +7,4 @@ export default class Sector {
   constructor(text: string) {
     this.text = text;
   }
-
-  editText(text: string){
-    this.text=text;
-  }
-
 }
