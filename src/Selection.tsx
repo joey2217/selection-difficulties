@@ -18,6 +18,7 @@ const Selection = ({ toggleShow, optionList }: Props) => {
   const [svg, setSvg] = useState("");
   const [random, setRandom] = useState(0);
   const [turn, setTurn] = useState(0);
+  const [showMsg,setShowMsg] =useState(false);
 
   useEffect(() => {
     const textList = Array.from(optionList, (opt) => opt.text);
@@ -26,17 +27,18 @@ const Selection = ({ toggleShow, optionList }: Props) => {
   }, [optionList]);
 
   useEffect(() => {
-    if (turn) {
+    if (showMsg&&turn) {
       setTimeout(()=>{
         const index = Math.floor((1 - (turn % 1)) / (1 / optionList.length));
         message.success(optionList[index].text);
       },random*1000+500)
     }
-  }, [optionList, random, turn]);
+    return setShowMsg(false)
+  }, [optionList, random, showMsg, turn]);
 
   return (
     <>
-      <Row justify="space-around">
+      <Row justify="center">
         <Col xs={24} sm={12} md={8} lg={6} xl={4}>
           <Button block onClick={toggleShow}>
             修改
@@ -79,6 +81,7 @@ const Selection = ({ toggleShow, optionList }: Props) => {
               const num = randomNum();
               setRandom(num);
               setTurn(turn + num);
+              setShowMsg(true);
             }}
           >
             开始
